@@ -2,9 +2,6 @@
 using AKEcommerceAutomation.Framework;
 using AKEcommerceAutomation.PageObjects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NUnit.Core;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 using TechTalk.SpecFlow;
 
 namespace AKEcommerceAutomation.TestSteps
@@ -24,7 +21,7 @@ namespace AKEcommerceAutomation.TestSteps
             ScenarioContext.Current.Set(homePage);
             //driver.Close();
         }
-        
+
         [Then(@"I should be in the Homepage")]
         public void ThenIShouldBeInTheHomepage()
         {

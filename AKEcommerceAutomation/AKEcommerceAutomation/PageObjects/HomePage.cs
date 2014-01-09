@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AKEcommerceAutomation.Framework;
 using OpenQA.Selenium;
-using AKEcommerceAutomation.Framework;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Interactions.Internal;
-using OpenQA.Selenium.Support.UI;
 
 namespace AKEcommerceAutomation.PageObjects
 {
@@ -16,7 +8,6 @@ namespace AKEcommerceAutomation.PageObjects
         //Actions builder = new Actions(driver);
         public HomePage(IWebDriver driver) : base(driver)
         {
-
         }
 
         public DestinationsPage GetDestinationsPage()
@@ -25,9 +16,5 @@ namespace AKEcommerceAutomation.PageObjects
             _driver.WaitForPageToLoad();
             return new DestinationsPage(_driver);
         }
-
-       
-
-    
     }
 }

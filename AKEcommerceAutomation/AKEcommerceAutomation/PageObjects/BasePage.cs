@@ -1,27 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Drawing.Imaging;
 using System.Globalization;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading;
+using System.IO;
+using System.Text;
 using AKEcommerceAutomation.Framework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using System.Threading.Tasks;
-using OpenQA.Selenium.Support.PageObjects;
-using AKEcommerceAutomation.PageObjects;
-using System.Text;
-using System.IO;
-using OpenQA.Selenium;
-using System.Xml;
-using System.Threading;
-using System.Data;
-
-
 
 namespace AKEcommerceAutomation.PageObjects
 {
-    using OpenQA.Selenium;
     //using OpenQA.Selenium.Support;
     //using NUnit.Framework;
     //using NUnit.VisualStudio.TestAdapter;
@@ -29,21 +17,30 @@ namespace AKEcommerceAutomation.PageObjects
     public class BasePage : SeleniumTestBase
     {
         //public IWebDriver driver;
-        public List<HomePage.TopLevelNavigation> TopNavLinks { get; set; }
-        public List<HomePage.FooterNavigation> FooterNavLinks { get; set; }
-        public List<HomePage.PreFooterNavigation> Prefooternavlinks { get; set; } 
+        public enum searchType
+        {
+            Destinations,
+            Journeys,
+            BeInspired
+        }
+
+        protected IWebDriver _driver;
+        private IBasePageStrategy _skin;
 
         protected BasePage(IWebDriver driver)
-       
+
         {
             _driver = driver;
         }
 
-        protected IWebDriver _driver;
+        public List<TopLevelNavigation> TopNavLinks { get; set; }
+        public List<FooterNavigation> FooterNavLinks { get; set; }
+        public List<PreFooterNavigation> Prefooternavlinks { get; set; }
+        public List<subnavigationinhomepage> subnavigationlinksinhomepage { get; set; }
 
         public int RandomNumber()
         {
-            Random random = new Random();
+            var random = new Random();
             return random.Next(10000, 10000000);
         }
 
@@ -74,6 +71,7 @@ namespace AKEcommerceAutomation.PageObjects
         {
             return RandomNumber().ToString(CultureInfo.InvariantCulture);
         }
+
         //***Get the valid Email: Un-comment when this functionality delivers
         //public string GetUniqueValidEmail()
         //{
@@ -122,7 +120,7 @@ namespace AKEcommerceAutomation.PageObjects
         //    {
 
         //    }
-         
+
         //}
 
         public string GetCopyRightText()
@@ -130,7 +128,7 @@ namespace AKEcommerceAutomation.PageObjects
             return _driver.FindElement(By.XPath("//*[@id='footer']/div[2]/div/div/footer/p")).Text;
         }
 
-       //UN-Comment When JourneyPage is Written
+        //UN-Comment When JourneyPage is Written
         //public string GetJourneysPage()
         //{
         //    driver.FindElement(By.XPath("//*[@id='journeys']")).Click();
@@ -156,36 +154,30 @@ namespace AKEcommerceAutomation.PageObjects
 
         public void RightHandNavigation()
         {
-
-           // driver.WaitForPageToLoad();
+            // driver.WaitForPageToLoad();
             if (driver.FindElement(By.XPath("//*[@id='sign-in']/strong")).Displayed)
             {
-                Assert.AreEqual("RightHand SideBar", driver.FindElement(By.XPath("//*[@id='page-wrapper']/div[1]/ul")).Text);
+                Assert.AreEqual("RightHand SideBar",
+                    driver.FindElement(By.XPath("//*[@id='page-wrapper']/div[1]/ul")).Text);
                 Console.WriteLine("Right Hand side bar is displayed");
                 driver.WaitForPageToLoad();
                 driver.FindElement(By.XPath("//*[@id='page-wrapper']/div[1]/ul/li[1]/a/span[2]")).Click();
             }
-            
-            //Console.WriteLine("enquire, RightHand SideBar is Displayed");
-            
 
+            //Console.WriteLine("enquire, RightHand SideBar is Displayed");
         }
 
-        private HomePage.IBasePageStrategy _skin;
-
-       public enum searchType {Destinations, Journeys, BeInspired }
-
-        private List<HomePage.TopLevelNavigation> BuilTopLevelNavigation()
+        private List<TopLevelNavigation> BuilTopLevelNavigation()
         {
             return _skin.BuildTopLevelNavigation(_driver, TopNavLinks);
         }
 
-        private List<HomePage.FooterNavigation> BuilFooterNavigation()
+        private List<FooterNavigation> BuilFooterNavigation()
         {
             return _skin.BuilFooterNavigation(_driver, FooterNavLinks);
         }
 
-        private List<HomePage.PreFooterNavigation> BuildPreFooterNavigation()
+        private List<PreFooterNavigation> BuildPreFooterNavigation()
         {
             return _skin.BuildPreFooterNavigation(_driver, Prefooternavlinks);
         }
@@ -195,58 +187,27 @@ namespace AKEcommerceAutomation.PageObjects
         {
             string str = ele.GetAttribute("src");
             if (str.EndsWith(".jpg"))
-            Console.WriteLine("Pass");
+                Console.WriteLine("Pass");
             else
-            Assert.Fail();
+                Assert.Fail();
         }
 
         /* This is generic function used for capturing screenshot*/
+
         public void SaveScreenShot(string screenshotFirstName)
         {
-            var folderLocation = "C:\\Projects\\ScreenShot";
+            string folderLocation = "C:\\Projects\\ScreenShot";
             if (!Directory.Exists(folderLocation))
             {
                 Directory.CreateDirectory(folderLocation);
             }
-            var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
+            Screenshot screenshot = ((ITakesScreenshot) driver).GetScreenshot();
             var filename = new StringBuilder(folderLocation);
             filename.Append(screenshotFirstName);
             filename.Append(DateTime.Now.ToString("ddMMyyyy"));
             filename.Append(".Jpeg");
-            screenshot.SaveAsFile(filename.ToString(), System.Drawing.Imaging.ImageFormat.Jpeg);
-
+            screenshot.SaveAsFile(filename.ToString(), ImageFormat.Jpeg);
         }
-        public class TopLevelNavigation
-        {
-            public string LinkText { get; set; }
-        }
-
-        public class FooterNavigation
-        {
-            public string LinkText { get; set; }
-        }
-
-        public class PreFooterNavigation
-        {
-            public string LinkText { get; set; }
-        }
-
-        public interface IBasePageStrategy
-        {
-            List<TopLevelNavigation> BuildTopLevelNavigation(IWebDriver driver, List<TopLevelNavigation> TopNavLinks);
-            List<FooterNavigation> BuilFooterNavigation(IWebDriver driver, List<FooterNavigation> FooterNavLinks);
-
-            List<PreFooterNavigation> BuildPreFooterNavigation(IWebDriver driver,
-                List<PreFooterNavigation> PreFooterNavLinks);
-        }
-      
-        public List<subnavigationinhomepage> subnavigationlinksinhomepage { get; set; }
-        
-        public class subnavigationinhomepage
-        {
-            public string LinkText { get; set; }
-        }
-
 
         public void Buildsubnavigationinhomepage()
         {
@@ -259,7 +220,34 @@ namespace AKEcommerceAutomation.PageObjects
                 });
             }
         }
-       
-        
+
+        public class FooterNavigation
+        {
+            public string LinkText { get; set; }
+        }
+
+        public interface IBasePageStrategy
+        {
+            List<TopLevelNavigation> BuildTopLevelNavigation(IWebDriver driver, List<TopLevelNavigation> TopNavLinks);
+            List<FooterNavigation> BuilFooterNavigation(IWebDriver driver, List<FooterNavigation> FooterNavLinks);
+
+            List<PreFooterNavigation> BuildPreFooterNavigation(IWebDriver driver,
+                List<PreFooterNavigation> PreFooterNavLinks);
+        }
+
+        public class PreFooterNavigation
+        {
+            public string LinkText { get; set; }
+        }
+
+        public class TopLevelNavigation
+        {
+            public string LinkText { get; set; }
+        }
+
+        public class subnavigationinhomepage
+        {
+            public string LinkText { get; set; }
+        }
     }
 }

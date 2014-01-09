@@ -9,124 +9,83 @@
 //      the code is regenerated.
 //  </auto-generated>
 // ------------------------------------------------------------------------------
+
 #region Designer generated code
+
+using TechTalk.SpecFlow;
+
 #pragma warning disable
+
 namespace AKEcommerceAutomation.FeatureFiles
 {
-    using TechTalk.SpecFlow;
-    
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("HomePage")]
-    public partial class HomePageFeature
+    [NUnit.Framework.DescriptionAttribute("SpecFlowFeature1")]
+    public partial class SpecFlowFeature1Feature
     {
-        
         private static TechTalk.SpecFlow.ITestRunner testRunner;
-        
-#line 1 "HomePage.feature"
+
+#line 1 "Homepage.feature"
 #line hidden
-        
+
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "HomePage", "In order to avoid silly mistakes\r\nAs a math idiot\r\nI want to be told the sum of t" +
-                    "wo numbers", ProgrammingLanguage.CSharp, ((string[])(null)));
+            var featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"),
+                "SpecFlowFeature1",
+                "In order to avoid silly mistakes\r\nAs a math idiot\r\nI want to be told the sum of t" +
+                "wo numbers", ProgrammingLanguage.CSharp, ((string[]) (null)));
             testRunner.OnFeatureStart(featureInfo);
         }
-        
+
         [NUnit.Framework.TestFixtureTearDownAttribute()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
-        
+
         [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
-        
+
         [NUnit.Framework.TearDownAttribute()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
         }
-        
+
         public virtual void ScenarioSetup(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioStart(scenarioInfo);
         }
-        
+
         public virtual void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
-        
+
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("HomePage")]
         public virtual void HomePage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("HomePage", ((string[])(null)));
-#line 12
-this.ScenarioSetup(scenarioInfo);
-#line 13
- testRunner.Given("I navigate to the homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 14
- testRunner.Then("PageSource Contains \'logo-big\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("the main navigation in Homepage")]
-        public virtual void TheMainNavigationInHomepage()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("the main navigation in Homepage", ((string[])(null)));
-#line 16
- this.ScenarioSetup(scenarioInfo);
-#line 17
- testRunner.Given("I navigate to the Homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 18
- testRunner.Then("there is a main navigation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Right-hand bar")]
-        public virtual void Right_HandBar()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Right-hand bar", ((string[])(null)));
-#line 20
- this.ScenarioSetup(scenarioInfo);
-#line 21
- testRunner.Given("I navigate to the Homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 22
- testRunner.Then("Right hand side bar is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Destinations Pop-up")]
-        public virtual void DestinationsPop_Up()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Destinations Pop-up", ((string[])(null)));
-#line 24
- this.ScenarioSetup(scenarioInfo);
-#line 25
- testRunner.Given("I navigate to the Homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 26
- testRunner.When("I click on the Destinations Link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 27
- testRunner.Then("Destinations Pop-up should display", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+            var scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("HomePage", ((string[]) (null)));
+#line 8
+            this.ScenarioSetup(scenarioInfo);
+#line 9
+            testRunner.Given("I navigate to the homepage", ((string) (null)), ((TechTalk.SpecFlow.Table) (null)),
+                "Given ");
+#line 10
+            testRunner.Then("I am in the Homepage", ((string) (null)), ((TechTalk.SpecFlow.Table) (null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
     }
 }
+
 #pragma warning restore
+
 #endregion

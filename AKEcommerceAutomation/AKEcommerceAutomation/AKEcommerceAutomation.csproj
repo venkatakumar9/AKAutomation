@@ -102,17 +102,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\..\..\Visual Studio 2012\Projects\AKEcommerceAutomation\AKEcommerceAutomation\TestSteps\HomePageSteps.cs">
+      <Link>TestSteps\HomePageSteps.cs</Link>
+    </Compile>
+    <Compile Include="FeatureFiles\Homepage.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Homepage.feature</DependentUpon>
+    </Compile>
     <Compile Include="Framework\EnvironmentConfiguration.cs" />
     <Compile Include="Framework\Extensions.cs" />
     <Compile Include="Framework\SeleniumTestBase.cs" />
     <Compile Include="Framework\WaitFor.cs" />
-    <Compile Include="FeatureFiles\HomePage.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HomePage.feature</DependentUpon>
-    </Compile>
     <Compile Include="PageObjects\DestinationsPage.cs" />
-    <Compile Include="TestSteps\HomePageSteps.cs" />
     <Compile Include="PageObjects\BasePage.cs" />
     <Compile Include="PageObjects\HomePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -122,9 +124,9 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="FeatureFiles\HomePage.feature">
+    <None Include="FeatureFiles\Homepage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>HomePage.feature.cs</LastGenOutput>
+      <LastGenOutput>Homepage.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

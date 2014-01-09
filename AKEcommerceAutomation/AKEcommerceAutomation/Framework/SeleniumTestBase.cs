@@ -3,16 +3,7 @@ using System.Configuration;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Remote;
 using TechTalk.SpecFlow;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Xml;
-using System.IO;
-using System.Data;
-using NUnit.Framework;
 
 namespace AKEcommerceAutomation.Framework
 {
@@ -44,17 +35,17 @@ namespace AKEcommerceAutomation.Framework
                         break;
 
                     case "FIREFOX":
-                        FirefoxProfileManager profileManager = new FirefoxProfileManager();
+                        var profileManager = new FirefoxProfileManager();
                         FirefoxProfile profile = profileManager.GetProfile("SeleniumProfile");
                         FeatureContext.Current["browser"] = new FirefoxDriver(profile);
                         ScenarioContext.Current["browser"] = FeatureContext.Current["browser"];
-                        driver = (IWebDriver)ScenarioContext.Current["browser"];
+                        driver = (IWebDriver) ScenarioContext.Current["browser"];
                         driver.Manage().Window.Maximize();
                         driver.Manage().Timeouts().ImplicitlyWait(new TimeSpan(0, 0, 30));
                         break;
 
                     case "CHROME":
-                        ChromeOptions options = new ChromeOptions();
+                        var options = new ChromeOptions();
                         options.AddArgument("--start-maximized");
                         driver = new ChromeDriver(options);
                         //FeatureContext.Current["browser"] = new ChromeDriver(options);
@@ -66,7 +57,7 @@ namespace AKEcommerceAutomation.Framework
             else
             {
                 ScenarioContext.Current["browser"] = FeatureContext.Current["browser"];
-                driver = (IWebDriver)ScenarioContext.Current["browser"];
+                driver = (IWebDriver) ScenarioContext.Current["browser"];
             }
             return driver;
         }
